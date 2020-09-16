@@ -108,6 +108,19 @@ public class MySimpleArrayList<T> {
         System.out.println();
     }
 
+    /**
+     * Reverses the array list.
+     */
+    public void reverse() {
+        T[] newArr = (T[]) new Object[this.capacity];
+
+        for (int i = this.size - 1, j = 0; i >= 0; i -= 1, j += 1) {
+            newArr[j] = this.arr[i];
+        }
+
+        this.arr = newArr;
+    }
+
     public static void main(String[] args) {
         MySimpleArrayList<Integer> al = new MySimpleArrayList<>(3);
         al.insert(100);
@@ -118,7 +131,7 @@ public class MySimpleArrayList<T> {
         
         al.removeAt(2);
 
-        al.insert(600);
+        al.reverse();
 
         al.printAllElems();
     }
