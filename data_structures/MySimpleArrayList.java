@@ -76,10 +76,13 @@ public class MySimpleArrayList<T> {
 
     /**
      * Prints the contents of the array list.
-     * @return a string representation of the contents of the array list
      */
-    public String printAllElems() {
-        return Arrays.toString(this.arr);
+    public void printAllElems() {
+        for (int i = 0; i < this.size; i += 1) {
+            System.out.print(this.arr[i] + " ");
+        }
+
+        System.out.println();
     }
 
     public static void main(String[] args) {
@@ -92,6 +95,8 @@ public class MySimpleArrayList<T> {
         
         al.removeAt(2);
 
-        System.out.println(al.printAllElems());
+        al.insert(600);
+
+        al.printAllElems();
     }
 }
