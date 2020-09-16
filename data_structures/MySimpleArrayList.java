@@ -32,13 +32,38 @@ public class MySimpleArrayList<T> {
     public void insert(T elem) {
         this.size += 1;
 
+        this.checkResize();
+        this.arr[this.size - 1] = elem;
+    }
+
+    /**
+     * Inserts elem at index.
+     * @param elem the element to insert
+     * @param index the index at which the element will be inserted
+     */
+    public void insert(T elem, int index) {
+        if (index < 0 || index > this.size) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        this.size += 1;
+
+        this.checkResize();
+        
+        for (int i = this.size - 1; i > index; i -= 1) {
+            this.arr[i] = this.arr[i - 1];
+        }
+
+        this.arr[index] = elem;
+    }
+
+    /**
+     * Resizes the internal array if necessary.
+     */
+    private void checkResize() {
         if (this.size > this.capacity) {
             this.arr = Arrays.copyOf(this.arr, this.capacity * 2);
-            this.arr[this.size - 1] = elem;
-
             this.capacity *= 2;
-        } else {
-            this.arr[this.size - 1] = elem;
         }
     }
 
@@ -97,17 +122,6 @@ public class MySimpleArrayList<T> {
     }
 
     /**
-     * Prints the contents of the array list.
-     */
-    public void printAllElems() {
-        for (int i = 0; i < this.size; i += 1) {
-            System.out.print(this.arr[i] + " ");
-        }
-
-        System.out.println();
-    }
-
-    /**
      * Reverses the array list.
      */
     public void reverse() {
@@ -128,10 +142,14 @@ public class MySimpleArrayList<T> {
         al.insert(400);
         al.insert(500);
         
-        al.removeAt(2);
+        int num = al.removeAt(2);
 
         al.reverse();
 
-        al.printAllElems();
+        al.insert(num, 2);
+        al.insert(0, 5);
+        al.insert(600, 0);
+
+        System.out.println(Arrays.toString(al.arr));
     }
 }
