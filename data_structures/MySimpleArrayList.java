@@ -1,7 +1,6 @@
 package data_structures;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 public class MySimpleArrayList<T> {
     private T[] arr;
@@ -114,8 +113,8 @@ public class MySimpleArrayList<T> {
     public void reverse() {
         T[] newArr = (T[]) new Object[this.capacity];
 
-        for (int i = this.size - 1, j = 0; i >= 0; i -= 1, j += 1) {
-            newArr[j] = this.arr[i];
+        for (int i = 0; i < this.size; i += 1) {
+            newArr[i] = this.arr[this.size - i - 1];
         }
 
         this.arr = newArr;
