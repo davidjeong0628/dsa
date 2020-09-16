@@ -1,6 +1,7 @@
 package data_structures;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class MySimpleArrayList<T> {
     private T[] arr;
@@ -64,6 +65,28 @@ public class MySimpleArrayList<T> {
         this.arr[this.size] = null;
 
         return elemToRemove;
+    }
+
+    /**
+     * Returns the index of the first instance (from the left) of elem.
+     * @param elem the element to search for
+     * @return the index that elem is located in or -1 if elem not found
+     */
+    public int indexOf(T elem) {
+        int index = -1;
+        
+        if (elem == null) {
+            return index;
+        }
+        
+        for (int i = 0; i < this.size; i += 1) {
+            if (this.arr[i].equals(elem)) {
+                index = i;
+                break;
+            }
+        }
+
+        return index;
     }
 
     /**
