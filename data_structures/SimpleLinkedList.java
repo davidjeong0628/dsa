@@ -7,6 +7,23 @@ public class SimpleLinkedList {
     private Node first;
     private Node last;
     private int size;
+
+    /**
+     * Represents a node in the list.
+     */
+    private class Node {
+        private int value = 0;
+        private Node next = null;
+    
+        public Node(int value) {
+            this.value = value;
+        }
+        
+        public Node(int value, Node next) {
+            this(value);
+            this.next = next;
+        }
+    }
     
     /**
      * Appends elem to the end of the list.
@@ -19,14 +36,15 @@ public class SimpleLinkedList {
             this.first = newNode;
         } else {
             Node curr = this.first;
-    
-            while (curr.hasNext()) {
-                curr = curr.getNext();
+            
+            while (curr.next != null) {
+                curr = curr.next;
             }
-
-            curr.setNext(newNode);
+            
+            curr.next = newNode;
         }
         
+        this.last = newNode;
         this.size += 1;
     }
 
@@ -45,8 +63,8 @@ public class SimpleLinkedList {
         Node curr = this.first;
 
         while (curr != null) {
-            s.append(curr.getValue() + ", ");
-            curr = curr.getNext();
+            s.append(curr.value + ", ");
+            curr = curr.next;
         }
 
         s.trimToSize();
@@ -64,35 +82,5 @@ public class SimpleLinkedList {
 
         System.out.println(ll);
         System.out.println(ll.size());
-    }
-}
-
-class Node {
-    private int value = 0;
-    private Node next = null;
-
-    public Node(int value) {
-        this.value = value;
-    }
-    
-    public Node(int value, Node next) {
-        this(value);
-        this.next = next;
-    }
-
-    public boolean hasNext() {
-        return this.next != null ? true : false; 
-    }
-
-    public Node getNext() {
-        return this.next;
-    }
-
-    public void setNext(Node next) {
-        this.next = next;
-    }
-
-    public int getValue() {
-        return this.value;
     }
 }
