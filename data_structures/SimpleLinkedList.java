@@ -64,22 +64,19 @@ public class SimpleLinkedList {
      * @return the index of the node with the value elem or -1 if not found
      */
     public int indexOf(int elem) {
-        int currIndex = 0;
-        int returnIndex = -1;
-        
         Node curr = this.first;
+        int index = 0;
 
         while (curr != null) {
             if (curr.value == elem) {
-                returnIndex = currIndex;
-                break;
+                return index;
             }
 
             curr = curr.next;
-            currIndex += 1;
+            index += 1;
         }
 
-        return returnIndex;
+        return -1;
     }
 
     /**
