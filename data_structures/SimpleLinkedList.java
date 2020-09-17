@@ -67,18 +67,16 @@ public class SimpleLinkedList {
         int currIndex = 0;
         int returnIndex = -1;
         
-        if (!this.isEmpty()) {
-            Node curr = this.first;
+        Node curr = this.first;
 
-            while (curr != null) {
-                if (curr.value == elem) {
-                    returnIndex = currIndex;
-                    break;
-                }
-
-                curr = curr.next;
-                currIndex += 1;
+        while (curr != null) {
+            if (curr.value == elem) {
+                returnIndex = currIndex;
+                break;
             }
+
+            curr = curr.next;
+            currIndex += 1;
         }
 
         return returnIndex;
