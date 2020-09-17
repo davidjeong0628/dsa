@@ -33,18 +33,11 @@ public class SimpleLinkedList {
         Node newNode = new Node(elem);
 
         if (this.first == null) {
-            this.first = newNode;
+            this.first = this.last = newNode;
         } else {
-            Node curr = this.first;
-            
-            while (curr.next != null) {
-                curr = curr.next;
-            }
-            
-            curr.next = newNode;
+            this.last = this.last.next = newNode;
         }
         
-        this.last = newNode;
         this.size += 1;
     }
 
@@ -82,5 +75,6 @@ public class SimpleLinkedList {
 
         System.out.println(ll);
         System.out.println(ll.size());
+        System.out.println(ll.last.value);
     }
 }
