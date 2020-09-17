@@ -32,7 +32,7 @@ public class SimpleLinkedList {
     public void addFirst(int elem) {
         Node newNode = new Node(elem);
 
-        if (this.first == null) {
+        if (this.isEmpty()) {
             this.first = this.last = newNode;
         } else {
             newNode.next = this.first;
@@ -49,13 +49,39 @@ public class SimpleLinkedList {
     public void addLast(int elem) {
         Node newNode = new Node(elem);
 
-        if (this.first == null) {
+        if (this.isEmpty()) {
             this.first = this.last = newNode;
         } else {
             this.last = this.last.next = newNode;
         }
         
         this.size += 1;
+    }
+
+    /**
+     * Returns the index of the node with the value elem, or -1 if not found.
+     * @param elem the element to look for
+     * @return the index of the node with the value elem or -1 if not found
+     */
+    public int indexOf(int elem) {
+        int currIndex = 0;
+        int returnIndex = -1;
+        
+        if (!this.isEmpty()) {
+            Node curr = this.first;
+
+            while (curr != null) {
+                if (curr.value == elem) {
+                    returnIndex = currIndex;
+                    break;
+                }
+
+                curr = curr.next;
+                currIndex += 1;
+            }
+        }
+
+        return returnIndex;
     }
 
     /**
@@ -83,6 +109,14 @@ public class SimpleLinkedList {
         return s.toString();
     }
 
+    /**
+     * Checks if the list is empty or not.
+     * @return true if list is empty, otherwise false
+     */
+    public boolean isEmpty() {
+        return this.first == null ? true : false;
+    }
+
     public static void main(String[] args) {
         SimpleLinkedList ll = new SimpleLinkedList();
 
@@ -94,6 +128,11 @@ public class SimpleLinkedList {
         ll.addFirst(-2);
         ll.addFirst(-3);
         ll.addLast(3);
+
+        System.out.println(ll.indexOf(0));
+        System.out.println(ll.indexOf(-3));
+        System.out.println(ll.indexOf(3));
+        System.out.println(ll.indexOf(4));
 
         System.out.println(ll);
         System.out.println(ll.size());
