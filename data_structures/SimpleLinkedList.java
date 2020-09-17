@@ -24,9 +24,26 @@ public class SimpleLinkedList {
             this.next = next;
         }
     }
+
+    /**
+     * Prepends elem to the list.
+     * @param elem the element to prepend
+     */
+    public void addFirst(int elem) {
+        Node newNode = new Node(elem);
+
+        if (this.first == null) {
+            this.first = this.last = newNode;
+        } else {
+            newNode.next = this.first;
+            this.first = newNode;
+        }
+
+        this.size += 1;
+    }
     
     /**
-     * Appends elem to the end of the list.
+     * Appends elem to the list.
      * @param elem the element to append
      */
     public void addLast(int elem) {
@@ -73,8 +90,13 @@ public class SimpleLinkedList {
         ll.addLast(1);
         ll.addLast(2);
 
+        ll.addFirst(-1);
+        ll.addFirst(-2);
+        ll.addFirst(-3);
+        ll.addLast(3);
+
         System.out.println(ll);
         System.out.println(ll.size());
-        System.out.println(ll.last.value);
+        System.out.println(ll.first.value);
     }
 }
