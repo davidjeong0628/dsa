@@ -1,5 +1,7 @@
 package data_structures;
 
+import java.util.NoSuchElementException;
+
 /**
  * A simple linked list which can only hold int types.
  */
@@ -62,18 +64,25 @@ public class SimpleLinkedList {
      * Removes the first element in the list.
      */
     public void removeFirst() {
+        if (this.isEmpty()) {
+            throw new NoSuchElementException();
+        }
+
         if (this.first == this.last) {
             this.first = this.last = null;
+            return;
         }
         
-        if (!this.isEmpty()) {
-            Node newFirst = this.first.next;
-            
-            this.first.next = null;
-            this.first = newFirst;
+        Node newFirst = this.first.next;
+        
+        this.first.next = null;
+        this.first = newFirst;
 
-            this.size -= 1;
-        }
+        this.size -= 1;
+    }
+
+    public void removeLast() {
+
     }
 
     /**
@@ -149,9 +158,5 @@ public class SimpleLinkedList {
 
         ll.addFirst(1);
         ll.addFirst(1);
-
-        ll.removeFirst();
-
-        System.out.println(ll.first.value);
     }
 }
