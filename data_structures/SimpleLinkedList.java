@@ -58,8 +58,22 @@ public class SimpleLinkedList {
         this.size += 1;
     }
 
+    /**
+     * Removes the first element in the list.
+     */
     public void removeFirst() {
+        if (this.first == this.last) {
+            this.first = this.last = null;
+        }
         
+        if (!this.isEmpty()) {
+            Node newFirst = this.first.next;
+            
+            this.first.next = null;
+            this.first = newFirst;
+
+            this.size -= 1;
+        }
     }
 
     /**
@@ -112,7 +126,12 @@ public class SimpleLinkedList {
         }
 
         s.trimToSize();
-        s.replace(s.length() - 2, s.length(), "]");
+
+        if (!this.isEmpty()) {
+            s.replace(s.length() - 2, s.length(), "]");
+        } else {
+            s.append("]");
+        }
         
         return s.toString();
     }
@@ -128,25 +147,11 @@ public class SimpleLinkedList {
     public static void main(String[] args) {
         SimpleLinkedList ll = new SimpleLinkedList();
 
-        ll.addLast(0);
-        ll.addLast(1);
-        ll.addLast(2);
+        ll.addFirst(1);
+        ll.addFirst(1);
 
-        ll.addFirst(-1);
-        ll.addFirst(-2);
-        ll.addFirst(-3);
-        ll.addLast(3);
+        ll.removeFirst();
 
-        System.out.println(ll.indexOf(0));
-        System.out.println(ll.indexOf(-3));
-        System.out.println(ll.indexOf(3));
-        System.out.println(ll.indexOf(4));
-
-        System.out.println(ll.contains(0));
-        System.out.println(ll.contains(100));
-
-        System.out.println(ll);
-        System.out.println(ll.size());
         System.out.println(ll.first.value);
     }
 }
