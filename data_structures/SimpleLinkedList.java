@@ -58,6 +58,19 @@ public class SimpleLinkedList {
         this.size += 1;
     }
 
+    public void removeFirst() {
+        
+    }
+
+    /**
+     * Checks whether elem is in the list.
+     * @param elem the value to look for
+     * @return true if elem is in the list, otherwise false
+     */
+    public boolean contains(int elem) {
+        return this.indexOf(elem) != -1;
+    }
+
     /**
      * Returns the index of the node with the value elem, or -1 if not found.
      * @param elem the element to look for
@@ -128,6 +141,9 @@ public class SimpleLinkedList {
         System.out.println(ll.indexOf(-3));
         System.out.println(ll.indexOf(3));
         System.out.println(ll.indexOf(4));
+
+        System.out.println(ll.contains(0));
+        System.out.println(ll.contains(100));
 
         System.out.println(ll);
         System.out.println(ll.size());
