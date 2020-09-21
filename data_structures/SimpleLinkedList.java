@@ -70,6 +70,8 @@ public class SimpleLinkedList {
 
         if (this.first == this.last) {
             this.first = this.last = null;
+            this.size -= 1;
+
             return;
         }
         
@@ -81,8 +83,31 @@ public class SimpleLinkedList {
         this.size -= 1;
     }
 
+    /**
+     * Removes the last element in the list.
+     */
     public void removeLast() {
+        if (this.isEmpty()) {
+            throw new NoSuchElementException();
+        }
 
+        if (this.first == this.last) {
+            this.first = this.last = null;
+            this.size -= 1;
+
+            return;
+        }
+
+        Node curr = this.first;
+
+        while (curr.next != this.last) {
+            curr = curr.next;
+        }
+
+        curr.next = null;
+        this.last = curr;
+
+        this.size -= 1;
     }
 
     /**
@@ -156,7 +181,13 @@ public class SimpleLinkedList {
     public static void main(String[] args) {
         SimpleLinkedList ll = new SimpleLinkedList();
 
-        ll.addFirst(1);
-        ll.addFirst(1);
+        ll.addLast(1);
+        ll.addLast(2);
+        ll.addLast(3);
+        ll.addLast(4);
+        ll.addLast(5);
+
+        System.out.println(ll);
+        System.out.println(ll.size());
     }
 }
