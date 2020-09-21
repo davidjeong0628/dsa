@@ -70,16 +70,13 @@ public class SimpleLinkedList {
 
         if (this.first == this.last) {
             this.first = this.last = null;
-            this.size -= 1;
-
-            return;
+        } else {
+            Node newFirst = this.first.next;
+            
+            this.first.next = null;
+            this.first = newFirst;
         }
         
-        Node newFirst = this.first.next;
-        
-        this.first.next = null;
-        this.first = newFirst;
-
         this.size -= 1;
     }
 
@@ -93,19 +90,16 @@ public class SimpleLinkedList {
 
         if (this.first == this.last) {
             this.first = this.last = null;
-            this.size -= 1;
-
-            return;
+        } else {
+            Node curr = this.first;
+    
+            while (curr.next != this.last) {
+                curr = curr.next;
+            }
+    
+            curr.next = null;
+            this.last = curr;
         }
-
-        Node curr = this.first;
-
-        while (curr.next != this.last) {
-            curr = curr.next;
-        }
-
-        curr.next = null;
-        this.last = curr;
 
         this.size -= 1;
     }
@@ -186,6 +180,12 @@ public class SimpleLinkedList {
         ll.addLast(3);
         ll.addLast(4);
         ll.addLast(5);
+
+        ll.removeLast();
+        ll.removeFirst();
+        ll.removeLast();
+        ll.removeFirst();
+        ll.removeFirst();
 
         System.out.println(ll);
         System.out.println(ll.size());
