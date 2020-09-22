@@ -136,6 +136,30 @@ public class SimpleLinkedList {
     }
 
     /**
+     * Reverses this list.
+     */
+    public void reverse() {
+        if (this.isEmpty()) {
+            return;
+        }
+
+        Node prev = this.first;
+        Node curr = this.first.next;
+        
+        while (curr != null) {
+            Node next = curr.next;
+
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        this.last = this.first;
+        this.last.next = null;
+        this.first = prev;
+    }
+
+    /**
      * Returns the number of elements in the list.
      * @return the number of elements in the list.
      */
@@ -196,9 +220,7 @@ public class SimpleLinkedList {
 
         ll.addLast(1);
         ll.addLast(2);
-        ll.addLast(3);
-        ll.addLast(4);
-        ll.addLast(5);
+        ll.reverse();
 
         System.out.println(Arrays.toString(ll.toArray()));
     }
