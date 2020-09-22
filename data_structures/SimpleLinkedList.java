@@ -1,5 +1,6 @@
 package data_structures;
 
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 /**
@@ -142,6 +143,24 @@ public class SimpleLinkedList {
         return this.size;
     }
 
+    /**
+     * Converts list to an array.
+     * @return the linked list as an array
+     */
+    public int[] toArray() {
+        Node curr = this.first;
+        int[] arr = new int[this.size];
+
+        int i = 0;
+        while (curr != null) {
+            arr[i++] = curr.value;
+            
+            curr = curr.next;
+        }
+
+        return arr;
+    }
+
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder("[");
@@ -181,13 +200,6 @@ public class SimpleLinkedList {
         ll.addLast(4);
         ll.addLast(5);
 
-        ll.removeLast();
-        ll.removeFirst();
-        ll.removeLast();
-        ll.removeFirst();
-        ll.removeFirst();
-
-        System.out.println(ll);
-        System.out.println(ll.size());
+        System.out.println(Arrays.toString(ll.toArray()));
     }
 }
