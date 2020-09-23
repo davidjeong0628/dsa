@@ -160,6 +160,34 @@ public class SimpleLinkedList {
     }
 
     /**
+     * Returns the kth value from the end.
+     * @param k the offset from the end
+     * @return the kth value from the end
+     */
+    public int getKthFromEnd(int k) {
+        if (this.isEmpty()) {
+            throw new IllegalStateException();
+        }
+
+        Node left, right;
+        left = right = this.first;
+
+        int dist = 0;
+        while (right != this.last && dist < k - 1) {
+            right = right.next;
+
+            dist += 1;
+        }
+
+        while (right != this.last) {
+            left = left.next;
+            right = right.next;
+        }
+
+        return left.value;
+    }
+
+    /**
      * Returns the number of elements in the list.
      * @return the number of elements in the list.
      */
@@ -218,9 +246,7 @@ public class SimpleLinkedList {
     public static void main(String[] args) {
         SimpleLinkedList ll = new SimpleLinkedList();
 
-        ll.addLast(1);
-        ll.addLast(2);
-        ll.reverse();
+        System.out.println(ll.getKthFromEnd(1));
 
         System.out.println(Arrays.toString(ll.toArray()));
     }
