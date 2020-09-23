@@ -188,6 +188,31 @@ public class SimpleLinkedList {
     }
 
     /**
+     * Prints the middle element(s) of the list.
+     */
+    public void printMiddle() {
+        if (this.isEmpty()) {
+            return;
+        }
+
+        Node left, right;
+        left = right = this.first;
+
+        while (right != this.last && right.next != this.last) {
+            left = left.next;
+            right = right.next.next;
+        }
+
+        String s = Integer.toString(left.value);
+
+        if (right != this.last) {
+            s += " " + Integer.toString(left.next.value);
+        }
+
+        System.out.println(s);
+    }
+
+    /**
      * Returns the number of elements in the list.
      * @return the number of elements in the list.
      */
@@ -245,8 +270,6 @@ public class SimpleLinkedList {
 
     public static void main(String[] args) {
         SimpleLinkedList ll = new SimpleLinkedList();
-
-        System.out.println(ll.getKthFromEnd(1));
 
         System.out.println(Arrays.toString(ll.toArray()));
     }
