@@ -267,10 +267,4 @@ public class SimpleLinkedList {
     public boolean isEmpty() {
         return this.first == null ? true : false;
     }
-
-    public static void main(String[] args) {
-        SimpleLinkedList ll = new SimpleLinkedList();
-
-        System.out.println(Arrays.toString(ll.toArray()));
-    }
 }
