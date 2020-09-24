@@ -1,6 +1,5 @@
 package data_structures;
 
-import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 /**
@@ -20,11 +19,6 @@ public class SimpleLinkedList {
     
         public Node(int value) {
             this.value = value;
-        }
-        
-        public Node(int value, Node next) {
-            this(value);
-            this.next = next;
         }
     }
 
